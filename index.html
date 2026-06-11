@@ -336,6 +336,10 @@ function renderPreview() {
         <div class="preview-fields">
           <div class="pfield"><div class="pfield-label">원개발사</div><div class="pfield-value">${p.developer}</div></div>
           <div class="pfield"><div class="pfield-label">판매사</div><div class="pfield-value">${p.seller}</div></div>
+          <div class="pfield full"><div class="pfield-label">타겟 질환</div><div class="pfield-value">${p.targetDisease||'-'}</div></div>
+          <div class="pfield"><div class="pfield-label">수가 / 청구 코드</div><div class="pfield-value">${p.billingCode||'-'}</div></div>
+          <div class="pfield"><div class="pfield-label">도입 비용 / 가격</div><div class="pfield-value">${p.price||'-'}</div></div>
+          <div class="pfield full"><div class="pfield-label">적응증 / 대상 환자</div><div class="pfield-value">${p.indication||'-'}</div></div>
           <div class="pfield full"><div class="pfield-label">주요 사용 병원</div>
             <div class="hosp-tags">${p.hospitals.map(h => `<span class="htag">${h}</span>`).join('')}</div>
           </div>
@@ -374,6 +378,10 @@ function renderEdit() {
         <div class="edit-field"><label>원개발사</label><input id="e-developer-${p.id}" value="${esc(p.developer)}"></div>
         <div class="edit-field"><label>판매사</label><input id="e-seller-${p.id}" value="${esc(p.seller)}"></div>
         <div class="edit-field full"><label>제품 설명</label><textarea id="e-desc-${p.id}">${esc(p.desc)}</textarea></div>
+        <div class="edit-field full"><label>타겟 질환</label><input id="e-targetDisease-${p.id}" value="${esc(p.targetDisease||'')}" placeholder="예: 좌심실수축기능부전, 심방세동"></div>
+        <div class="edit-field"><label>수가 / 청구 코드</label><input id="e-billingCode-${p.id}" value="${esc(p.billingCode||'')}" placeholder="예: 비급여 9,300원 / F6002"></div>
+        <div class="edit-field"><label>도입 비용 / 가격</label><input id="e-price-${p.id}" value="${esc(p.price||'')}" placeholder="예: 월 구독 6,000원/건"></div>
+        <div class="edit-field full"><label>적응증 / 대상 환자</label><textarea id="e-indication-${p.id}" placeholder="예: 만 18세 이상 성인, 심부전 고위험군">${esc(p.indication||'')}</textarea></div>
 
         <div class="edit-field full">
           <label>제품 사진</label>
@@ -420,11 +428,15 @@ function renderEdit() {
 function saveProduct(id) {
   const p = products.find(x => x.id === id);
   if (!p) return;
-  p.name     = document.getElementById(`e-name-${id}`).value.trim() || p.name;
-  p.category = document.getElementById(`e-category-${id}`).value.trim() || p.category;
-  p.developer= document.getElementById(`e-developer-${id}`).value.trim();
-  p.seller   = document.getElementById(`e-seller-${id}`).value.trim();
-  p.desc     = document.getElementById(`e-desc-${id}`).value.trim();
+  p.name          = document.getElementById(`e-name-${id}`).value.trim() || p.name;
+  p.category      = document.getElementById(`e-category-${id}`).value.trim() || p.category;
+  p.developer     = document.getElementById(`e-developer-${id}`).value.trim();
+  p.seller        = document.getElementById(`e-seller-${id}`).value.trim();
+  p.desc          = document.getElementById(`e-desc-${id}`).value.trim();
+  p.targetDisease = document.getElementById(`e-targetDisease-${id}`).value.trim();
+  p.billingCode   = document.getElementById(`e-billingCode-${id}`).value.trim();
+  p.price         = document.getElementById(`e-price-${id}`).value.trim();
+  p.indication    = document.getElementById(`e-indication-${id}`).value.trim();
   saveData();
   render();
   toast('저장되었습니다 ✓');
