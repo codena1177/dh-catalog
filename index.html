@@ -29,6 +29,8 @@ a{color:inherit;text-decoration:none}
 .sidebar-title{font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
 .filter-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:13px;color:#444;transition:background .1s}
 .filter-item:hover{background:#f5f5f5}
+.filter-item.filter-active{background:#EBF4FF;color:#185FA5;font-weight:500}
+.filter-item.filter-active span:first-child{color:#185FA5}
 .filter-item input{accent-color:#185FA5}
 .sidebar-section{margin-bottom:1.5rem}
 .sel-summary{background:#EBF4FF;border-radius:8px;padding:12px;margin-bottom:1.5rem;font-size:13px}
@@ -154,8 +156,17 @@ a{color:inherit;text-decoration:none}
         <span>개 제품 선택됨</span>
       </div>
       <div class="sidebar-section">
-        <div class="sidebar-title">카테고리</div>
-        <div id="category-filters"></div>
+        <div class="sidebar-title">질환 계통</div>
+        <div id="filter-system"></div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">기능 분류</div>
+        <div id="filter-function"></div>
+      </div>
+      <div class="sidebar-section">
+        <div class="filter-item" onclick="clearFilters()" style="color:#185FA5;font-weight:500">
+          <span style="font-size:12px">↺</span>&nbsp; 필터 초기화
+        </div>
       </div>
       <div class="sidebar-section">
         <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="goPreview()">
@@ -232,9 +243,13 @@ function render() {
   updateSelCount();
 }
 
+let activeFilters = { system: null, func: null };
+
 function renderGrid(filter = null) {
   const grid = document.getElementById('product-grid');
-  const list = filter ? products.filter(p => p.category === filter) : products;
+  let list = products;
+  if (activeFilters.system) list = list.filter(p => p.diseaseSystem === activeFilters.system);
+  if (activeFilters.func)   list = list.filter(p => p.funcType === activeFilters.func);
   grid.innerHTML = list.map(p => `
     <div class="card ${p.selected ? 'selected' : ''}" onclick="toggleSelect(${p.id})">
       <div class="check-ring">
@@ -254,15 +269,26 @@ function renderGrid(filter = null) {
 }
 
 function renderCategories() {
-  const cats = [...new Set(products.map(p => p.category))];
-  document.getElementById('category-filters').innerHTML = cats.map(c => `
-    <div class="filter-item" onclick="filterCat('${c}')">
-      <span style="font-size:12px;color:#888">›</span>
-      <span>${c}</span>
-      <span style="margin-left:auto;font-size:11px;color:#bbb">${products.filter(p=>p.category===c).length}</span>
-    </div>`).join('') + `<div class="filter-item" onclick="renderGrid(null)">
-      <span style="font-size:12px;color:#888">›</span><span>전체 보기</span>
+  const systems = [...new Set(products.map(p => p.diseaseSystem).filter(Boolean))];
+  const funcs   = [...new Set(products.map(p => p.funcType).filter(Boolean))];
+
+  const makeItem = (label, val, type) => {
+    const isActive = activeFilters[type] === val;
+    const count = products.filter(p => p[type === 'system' ? 'diseaseSystem' : 'funcType'] === val).length;
+    return `<div class="filter-item ${isActive ? 'filter-active' : ''}" onclick="toggleFilter('${type}','${val}')">
+      <span style="font-size:12px;color:#aaa">›</span>
+      <span>${label}</span>
+      <span style="margin-left:auto;font-size:11px;color:#bbb">${count}</span>
     </div>`;
+  };
+
+  document.getElementById('filter-system').innerHTML =
+    systems.map(s => makeItem(s, s, 'system')).join('') ||
+    '<div style="font-size:12px;color:#bbb;padding:4px 8px">편집탭에서 입력하세요</div>';
+
+  document.getElementById('filter-function').innerHTML =
+    funcs.map(f => makeItem(f, f, 'func')).join('') ||
+    '<div style="font-size:12px;color:#bbb;padding:4px 8px">편집탭에서 입력하세요</div>';
 }
 
 function updateSelCount() {
@@ -294,7 +320,18 @@ function clearSelection() {
   saveData(); render();
 }
 
-function filterCat(cat) { renderGrid(cat); }
+function toggleFilter(type, val) {
+  if (activeFilters[type] === val) activeFilters[type] = null;
+  else activeFilters[type] = val;
+  renderGrid();
+  renderCategories();
+}
+
+function clearFilters() {
+  activeFilters = { system: null, func: null };
+  renderGrid();
+  renderCategories();
+}
 
 // ── Preview ────────────────────────────────────────────────────────────
 function renderPreview() {
@@ -334,6 +371,8 @@ function renderPreview() {
           </div>
         </div>
         <div class="preview-fields">
+          <div class="pfield"><div class="pfield-label">질환 계통</div><div class="pfield-value">${p.diseaseSystem||'-'}</div></div>
+          <div class="pfield"><div class="pfield-label">기능 분류</div><div class="pfield-value">${p.funcType||'-'}</div></div>
           <div class="pfield"><div class="pfield-label">원개발사</div><div class="pfield-value">${p.developer}</div></div>
           <div class="pfield"><div class="pfield-label">판매사</div><div class="pfield-value">${p.seller}</div></div>
           <div class="pfield full"><div class="pfield-label">타겟 질환</div><div class="pfield-value">${p.targetDisease||'-'}</div></div>
@@ -378,6 +417,8 @@ function renderEdit() {
         <div class="edit-field"><label>원개발사</label><input id="e-developer-${p.id}" value="${esc(p.developer)}"></div>
         <div class="edit-field"><label>판매사</label><input id="e-seller-${p.id}" value="${esc(p.seller)}"></div>
         <div class="edit-field full"><label>제품 설명</label><textarea id="e-desc-${p.id}">${esc(p.desc)}</textarea></div>
+        <div class="edit-field"><label>질환 계통</label><input id="e-diseaseSystem-${p.id}" value="${esc(p.diseaseSystem||'')}" placeholder="예: 순환기계, 근골격계, 안과"></div>
+        <div class="edit-field"><label>기능 분류</label><input id="e-funcType-${p.id}" value="${esc(p.funcType||'')}" placeholder="예: 진단 보조, 예방·스크리닝, 재활·치료"></div>
         <div class="edit-field full"><label>타겟 질환</label><input id="e-targetDisease-${p.id}" value="${esc(p.targetDisease||'')}" placeholder="예: 좌심실수축기능부전, 심방세동"></div>
         <div class="edit-field"><label>수가 / 청구 코드</label><input id="e-billingCode-${p.id}" value="${esc(p.billingCode||'')}" placeholder="예: 비급여 9,300원 / F6002"></div>
         <div class="edit-field"><label>도입 비용 / 가격</label><input id="e-price-${p.id}" value="${esc(p.price||'')}" placeholder="예: 월 구독 6,000원/건"></div>
@@ -433,6 +474,8 @@ function saveProduct(id) {
   p.developer     = document.getElementById(`e-developer-${id}`).value.trim();
   p.seller        = document.getElementById(`e-seller-${id}`).value.trim();
   p.desc          = document.getElementById(`e-desc-${id}`).value.trim();
+  p.diseaseSystem = document.getElementById(`e-diseaseSystem-${id}`).value.trim();
+  p.funcType      = document.getElementById(`e-funcType-${id}`).value.trim();
   p.targetDisease = document.getElementById(`e-targetDisease-${id}`).value.trim();
   p.billingCode   = document.getElementById(`e-billingCode-${id}`).value.trim();
   p.price         = document.getElementById(`e-price-${id}`).value.trim();
@@ -544,28 +587,28 @@ function toast(msg) {
 
 function getDefaultProducts() {
   return [
-    { id:1, name:"에티아 (AITIA)", category:"AI 심전도 분석", icon:"🫀",
+    { id:1, name:"에티아 (AITIA)", category:"AI 심전도 분석", icon:"🫀", diseaseSystem:"순환기계", funcType:"진단 보조",
       developer:"MedicalAI", seller:"대웅제약", report:"", reportLabel:"",
       hospitals:["서울아산병원","삼성서울병원","세브란스병원"], desc:"12유도 심전도 데이터를 AI로 분석하여 좌심실수축기능부전, 이완기능부전, 대동맥판막 협착증 가능성을 점수와 위험도로 표시합니다.", selected:false },
-    { id:2, name:"모비케어", category:"웨어러블 홀터", icon:"⌚",
+    { id:2, name:"모비케어", category:"웨어러블 홀터", icon:"⌚", diseaseSystem:"순환기계", funcType:"예방·스크리닝",
       developer:"모비케어", seller:"대웅제약", report:"", reportLabel:"",
       hospitals:["서울성모병원","강남세브란스"], desc:"웨어러블 장기 심전도 모니터링 솔루션.", selected:false },
-    { id:3, name:"옵티나", category:"안저카메라 AI", icon:"👁",
+    { id:3, name:"옵티나", category:"안저카메라 AI", icon:"👁", diseaseSystem:"안과", funcType:"진단 보조",
       developer:"옵티나", seller:"대웅제약", report:"", reportLabel:"",
       hospitals:["분당차병원"], desc:"AI 기반 안저 촬영 및 분석 솔루션.", selected:false },
-    { id:4, name:"위스키", category:"AI 진단 솔루션", icon:"🔬",
+    { id:4, name:"위스키", category:"AI 진단 솔루션", icon:"🔬", diseaseSystem:"순환기계", funcType:"진단 보조",
       developer:"위스키", seller:"대웅제약", report:"", reportLabel:"",
       hospitals:["경희대병원"], desc:"AI 기반 영상 진단 보조 솔루션.", selected:false },
-    { id:5, name:"더스피로킷", category:"디지털 폐기능 검사", icon:"🫁",
+    { id:5, name:"더스피로킷", category:"디지털 폐기능 검사", icon:"🫁", diseaseSystem:"호흡기계", funcType:"진단 보조",
       developer:"스피로킷", seller:"대웅제약", report:"", reportLabel:"",
       hospitals:["아주대병원","가천대길병원"], desc:"디지털 폐기능 검사(PFT) 장비.", selected:false },
-    { id:6, name:"오스테오시그널", category:"골다공증 스크리닝", icon:"🦴",
+    { id:6, name:"오스테오시그널", category:"골다공증 스크리닝", icon:"🦴", diseaseSystem:"근골격계", funcType:"예방·스크리닝",
       developer:"Prometeus", seller:"대웅제약", report:"", reportLabel:"",
       hospitals:["건강보험공단일산병원"], desc:"흉부 X-ray 기반 AI 골다공증 스크리닝 솔루션.", selected:false },
-    { id:7, name:"모라큐어", category:"디지털 재활", icon:"🦵",
+    { id:7, name:"모라큐어", category:"디지털 재활", icon:"🦵", diseaseSystem:"근골격계", funcType:"재활·치료",
       developer:"모라큐어", seller:"대웅제약", report:"", reportLabel:"",
       hospitals:["서울재활병원"], desc:"디지털 무릎 재활 앱 솔루션.", selected:false },
-    { id:8, name:"딥사르크", category:"근감소증 진단", icon:"💪",
+    { id:8, name:"딥사르크", category:"근감소증 진단", icon:"💪", diseaseSystem:"근골격계", funcType:"진단 보조",
       developer:"딥사르크", seller:"대웅제약", report:"", reportLabel:"",
       hospitals:["노인전문병원"], desc:"근전도(EMG) 기반 AI 근감소증 진단 솔루션.", selected:false }
   ];
