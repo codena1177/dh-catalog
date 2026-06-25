@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제품 숨김 관리 | 대웅 디지털헬스 카탈로그</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; background: #f7f7f5; color: #1a1a1a; font-size: 14px; }
+.header { background: #fff; border-bottom: 1px solid #e8e8e8; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+.header-left { display: flex; align-items: center; gap: 12px; }
+.logo-badge { background: #185FA5; color: #fff; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; }
+.header h1 { font-size: 15px; font-weight: 500; }
+.back-btn { font-size: 13px; color: #185FA5; text-decoration: none; display: flex; align-items: center; gap: 4px; border: 1px solid #185FA5; border-radius: 6px; padding: 6px 12px; }
+.back-btn:hover { background: #EBF4FF; }
+.wrap { max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
+.section-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.section-sub { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+.product-list { display: flex; flex-direction: column; gap: 8px; }
+.product-row { background: #fff; border: 1px solid #e8e8e8; border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+.product-row.hidden-row { background: #fafafa; opacity: 0.7; }
+.product-icon { font-size: 28px; width: 44px; text-align: center; flex-shrink: 0; }
+.product-info { flex: 1; }
+.product-name { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+.product-cat { font-size: 12px; color: #888; }
+.status-badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; flex-shrink: 0; }
+.badge-visible { background: #edfaf3; color: #0e6b3a; border: 1px solid #2dbc6e; }
+.badge-hidden { background: #fff3f3; color: #c0392b; border: 1px solid #e74c3c; }
+.toggle-btn { font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 6px; border: none; cursor: pointer; flex-shrink: 0; font-family: inherit; transition: all .15s; }
+.btn-hide { background: #fff3f3; color: #c0392b; border: 1px solid #e74c3c; }
+.btn-hide:hover { background: #e74c3c; color: #fff; }
+.btn-show { background: #edfaf3; color: #0e6b3a; border: 1px solid #2dbc6e; }
+.btn-show:hover { background: #2dbc6e; color: #fff; }
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(10px); background: #1a1a2e; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; opacity: 0; transition: all .3s; pointer-events: none; z-index: 999; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.info-box { background: #EBF4FF; border: 1px solid #b3d4f5; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #185FA5; margin-bottom: 1.5rem; line-height: 1.6; }
+.reset-btn { margin-top: 1.5rem; font-size: 13px; color: #888; background: none; border: 1px solid #ddd; border-radius: 6px; padding: 7px 14px; cursor: pointer; font-family: inherit; }
+.reset-btn:hover { color: #c0392b; border-color: #e74c3c; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left">
+    <span class="logo-badge">DAEWOONG</span>
+    <h1>제품 숨김 관리</h1>
+  </div>
+  <a class="back-btn" href="index.html">← 카탈로그로 돌아가기</a>
+</div>
+<div class="wrap">
+  <div class="info-box">
+    ℹ️ 여기서 숨긴 제품은 카탈로그에 표시되지 않습니다.<br>
+    새로고침해도 설정이 유지되며, 언제든지 다시 표시할 수 있습니다.
+  </div>
+  <div class="section-title">전체 제품 목록</div>
+  <div class="section-sub">눈 모양 버튼으로 표시/숨김을 전환하세요.</div>
+  <div class="product-list" id="product-list">로딩 중...</div>
+  <button class="reset-btn" onclick="resetHidden()">⚠️ 모든 숨김 설정 초기화 (전체 표시)</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const HIDDEN_KEY = 'dh_hidden_ids';
+const DEFAULT_HIDDEN = [18, 19, 20];
+
+let allProducts = [];
+let hiddenIds = [];
+
+function getHiddenIds() {
+  const stored = localStorage.getItem(HIDDEN_KEY);
+  if (stored === null) {
+    localStorage.setItem(HIDDEN_KEY, JSON.stringify(DEFAULT_HIDDEN));
+    return [...DEFAULT_HIDDEN];
+  }
+  return JSON.parse(stored);
+}
+
+function saveHiddenIds() {
+  localStorage.setItem(HIDDEN_KEY, JSON.stringify(hiddenIds));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function toggleProduct(id) {
+  if (hiddenIds.includes(id)) {
+    hiddenIds = hiddenIds.filter(x => x !== id);
+    showToast('✅ 제품이 카탈로그에 표시됩니다.');
+  } else {
+    hiddenIds.push(id);
+    showToast('🚫 제품이 카탈로그에서 숨겨졌습니다.');
+  }
+  saveHiddenIds();
+  renderList();
+}
+
+function resetHidden() {
+  if (!confirm('모든 숨김 설정을 초기화하시겠습니까? 전체 제품이 표시됩니다.')) return;
+  hiddenIds = [];
+  saveHiddenIds();
+  showToast('초기화 완료 — 모든 제품이 표시됩니다.');
+  renderList();
+}
+
+function renderList() {
+  const el = document.getElementById('product-list');
+  el.innerHTML = allProducts.map(p => {
+    const isHidden = hiddenIds.includes(p.id);
+    return `
+    <div class="product-row ${isHidden ? 'hidden-row' : ''}">
+      <div class="product-icon">${p.icon || '📦'}</div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-cat">${p.category || ''} · ${p.developer || ''}</div>
+      </div>
+      <span class="status-badge ${isHidden ? 'badge-hidden' : 'badge-visible'}">
+        ${isHidden ? '숨김' : '표시중'}
+      </span>
+      <button class="toggle-btn ${isHidden ? 'btn-show' : 'btn-hide'}" onclick="toggleProduct(${p.id})">
+        ${isHidden ? '👁 표시' : '🚫 숨김'}
+      </button>
+    </div>`;
+  }).join('');
+}
+
+// 카탈로그와 같은 products.json 로드
+fetch('data/products.json?v=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    allProducts = data;
+    hiddenIds = getHiddenIds();
+    renderList();
+  })
+  .catch(() => {
+    document.getElementById('product-list').innerHTML = '<p style="color:#c0392b;padding:1rem">products.json 로드 실패. 같은 서버에서 열어주세요.</p>';
+  });
+</script>
+</body>
+</html>
