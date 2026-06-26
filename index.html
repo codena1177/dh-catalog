@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대웅제약 디지털헬스 제품 카탈로그</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#f7f7f5;color:#1a1a1a;font-size:14px}
+a{color:inherit;text-decoration:none}
+.app{display:flex;flex-direction:column;min-height:100vh}
+.header{background:#fff;border-bottom:1px solid #e8e8e8;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.header-left{display:flex;align-items:center;gap:12px}
+.logo-badge{background:#185FA5;color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;letter-spacing:.04em}
+.header h1{font-size:15px;font-weight:500;color:#1a1a1a}
+.header-right{display:flex;gap:8px}
+.main{display:flex;flex:1}
+.sidebar{width:240px;background:#fff;border-right:1px solid #e8e8e8;padding:1.5rem;flex-shrink:0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto}
+.content{flex:1;padding:2rem;overflow-y:auto}
+.tabs{display:flex;gap:2px;background:#f0f0ee;border-radius:8px;padding:3px;margin-bottom:1.5rem}
+.tab{flex:1;text-align:center;padding:7px 0;font-size:13px;border-radius:6px;cursor:pointer;border:none;background:transparent;color:#666;transition:all .15s}
+.tab.active{background:#fff;color:#1a1a1a;font-weight:500;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.sidebar-title{font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.filter-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:13px;color:#444;transition:background .1s}
+.filter-item:hover{background:#f5f5f5}
+.filter-item.filter-active{background:#EBF4FF;color:#185FA5;font-weight:500}
+.sidebar-section{margin-bottom:1.5rem}
+.sel-summary{background:#EBF4FF;border-radius:8px;padding:12px;margin-bottom:1.5rem;font-size:13px}
+.sel-summary strong{color:#185FA5;font-size:18px;display:block;margin-bottom:2px}
+.sel-summary span{color:#555}
+.slicer-list{display:flex;flex-direction:column;gap:5px}
+.slicer-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 10px;font-size:13px;font-weight:500;border:1.5px solid #e0e0e0;border-radius:7px;background:#fff;color:#555;cursor:pointer;text-align:left;transition:all .15s;font-family:inherit;}
+.slicer-btn:hover{background:#f5f5f5;border-color:#bbb;}
+.slicer-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.slicer-btn.slicer-all{color:#1a1a1a;}
+.slicer-btn.slicer-all.slicer-active{background:#1a1a2e;border-color:#1a1a2e;color:#fff;}
+.slicer-btn[data-func="예방·예측"].slicer-active{background:#fffbe6;border-color:#f5c400;color:#7a5c00;font-weight:600;}
+.slicer-btn[data-func="예방·예측"]:hover{background:#fffbe6;border-color:#f5c400;color:#7a5c00;}
+.dot-prev{background:#f5c400;}
+.slicer-btn[data-func="진단"].slicer-active{background:#edfaf3;border-color:#2dbc6e;color:#0e6b3a;font-weight:600;}
+.slicer-btn[data-func="진단"]:hover{background:#edfaf3;border-color:#2dbc6e;color:#0e6b3a;}
+.dot-diag{background:#2dbc6e;}
+.slicer-btn[data-func="치료"].slicer-active{background:#e8f0fe;border-color:#2563eb;color:#1040a8;font-weight:600;}
+.slicer-btn[data-func="치료"]:hover{background:#e8f0fe;border-color:#2563eb;color:#1040a8;}
+.dot-treat{background:#2563eb;}
+.slicer-btn[data-func="사후관리"].slicer-active{background:#fff3e8;border-color:#f07820;color:#8a3e00;font-weight:600;}
+.slicer-btn[data-func="사후관리"]:hover{background:#fff3e8;border-color:#f07820;color:#8a3e00;}
+.dot-after{background:#f07820;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative}
+.card:hover{border-color:#b0c8e8;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.card.selected{border:2px solid #185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.08)}
+.card-img{width:100%;height:120px;background:#f7f7f5;padding:12px;display:flex;align-items:center;justify-content:center;font-size:42px}
+.card-img img{width:100%;height:100%;object-fit:contain}
+.card-body{padding:12px}
+.card-name{font-size:13px;font-weight:500;margin-bottom:3px}
+.card-cat{font-size:11px;color:#888}
+.card-dev{font-size:11px;color:#aaa;margin-top:6px}
+.check-ring{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:#185FA5;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s}
+.check-ring svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.5}
+.card.selected .check-ring{opacity:1}
+.preview-wrap{display:flex;flex-direction:column;gap:0}
+.preview-item{background:#fff;border:1px solid #e8e8e8;border-radius:12px;overflow:hidden;margin-bottom:16px}
+.preview-header{display:flex;gap:20px;padding:1.5rem;align-items:flex-start}
+.preview-img{width:100px;height:80px;background:#f7f7f5;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0;overflow:hidden}
+.preview-img img{width:100%;height:100%;object-fit:contain;padding:6px}
+.preview-meta{flex:1}
+.preview-name{font-size:17px;font-weight:500;margin-bottom:3px}
+.preview-cat{font-size:12px;color:#888;margin-bottom:8px}
+.preview-desc{font-size:13px;color:#555;line-height:1.65}
+.preview-fields{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#e8e8e8;border-top:1px solid #e8e8e8}
+.pfield{background:#fff;padding:14px 20px}
+.pfield.full{grid-column:1/-1}
+.pfield-label{font-size:10px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.pfield-value{font-size:13px;color:#333}
+.hosp-tags{display:flex;flex-wrap:wrap;gap:6px}
+.htag{font-size:12px;background:#f5f5f5;border:1px solid #e8e8e8;border-radius:20px;padding:3px 10px;color:#555}
+.report-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#185FA5;background:#EBF4FF;border-radius:6px;padding:6px 12px;cursor:pointer;border:none;font-family:inherit}
+.report-link:hover{background:#dbeeff}
+.report-link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.edit-card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:1.25rem;margin-bottom:12px}
+.edit-card-header{display:flex;align-items:center;gap:10px;margin-bottom:1rem;padding-bottom:10px;border-bottom:1px solid #f0f0f0}
+.edit-card-title{font-size:14px;font-weight:500;flex:1}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.edit-field{display:flex;flex-direction:column;gap:5px}
+.edit-field.full{grid-column:1/-1}
+.edit-field label{font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.04em}
+.edit-field input,.edit-field textarea,.edit-field select{border:1px solid #e0e0e0;border-radius:6px;padding:7px 10px;font-size:13px;font-family:inherit;color:#1a1a1a;background:#fff;width:100%}
+.edit-field input:focus,.edit-field textarea:focus,.edit-field select:focus{outline:none;border-color:#185FA5;box-shadow:0 0 0 2px rgba(24,95,165,.1)}
+.edit-field textarea{resize:vertical;min-height:70px}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.etag{font-size:12px;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:20px;padding:3px 8px;color:#555;display:flex;align-items:center;gap:4px}
+.etag button{border:none;background:none;cursor:pointer;color:#aaa;font-size:14px;line-height:1;padding:0}
+.etag button:hover{color:#e24b4a}
+.tag-add-row{display:flex;gap:6px}
+.tag-add-row input{flex:1}
+.file-upload-area{border:1.5px dashed #d0d0d0;border-radius:8px;padding:14px;text-align:center;cursor:pointer;transition:border-color .15s;background:#fafafa}
+.file-upload-area:hover{border-color:#185FA5;background:#f0f7ff}
+.file-upload-area input{display:none}
+.file-upload-area .hint{font-size:12px;color:#aaa;margin-top:4px}
+.file-thumb{display:flex;align-items:center;gap:8px;background:#f5f5f5;border-radius:6px;padding:8px 10px;margin-top:8px;font-size:12px;color:#555}
+.file-thumb svg{width:16px;height:16px;flex-shrink:0;stroke:#185FA5;fill:none;stroke-width:2}
+.file-thumb button{border:none;background:none;cursor:pointer;color:#aaa;margin-left:auto;font-size:14px}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid #e0e0e0;background:#fff;color:#333;font-family:inherit;transition:all .15s}
+.btn:hover{background:#f5f5f5}
+.btn-primary{background:#185FA5;color:#fff;border-color:#185FA5}
+.btn-primary:hover{background:#0c447c;border-color:#0c447c}
+.btn-danger{color:#e24b4a;border-color:#f7c1c1}
+.btn-danger:hover{background:#fcebeb}
+.btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.btn-row{display:flex;gap:8px;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid #f0f0f0}
+.empty{text-align:center;padding:4rem 2rem;color:#bbb}
+.empty svg{width:40px;height:40px;stroke:#ddd;fill:none;stroke-width:1.5;display:block;margin:0 auto 12px}
+.empty p{font-size:14px}
+@media print{
+.header,.sidebar,.tabs,.btn-row,.no-print{display:none!important}
+.main{display:block}
+.content{padding:0}
+.preview-item{break-inside:avoid;margin-bottom:24px;border:1px solid #ddd}
+body{background:#fff}
+}
+.toast{position:fixed;bottom:24px;right:24px;background:#1a1a1a;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:999}
+.toast.show{opacity:1}
+
+/* GitHub 토큰 설정 모달 */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:flex;align-items:center;justify-content:center}
+.modal-box{background:#fff;border-radius:14px;padding:2rem;width:480px;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.modal-title{font-size:16px;font-weight:600;margin-bottom:6px}
+.modal-desc{font-size:13px;color:#666;margin-bottom:1.25rem;line-height:1.6}
+.modal-field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.modal-field label{font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.04em}
+.modal-field input{border:1px solid #e0e0e0;border-radius:6px;padding:9px 12px;font-size:13px;font-family:inherit;width:100%}
+.modal-field input:focus{outline:none;border-color:#185FA5;box-shadow:0 0 0 2px rgba(24,95,165,.1)}
+.modal-btns{display:flex;gap:8px;margin-top:1.25rem}
+.saving-overlay{position:fixed;inset:0;background:rgba(255,255,255,.8);z-index:300;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+.saving-spinner{width:36px;height:36px;border:3px solid #e0e0e0;border-top-color:#185FA5;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.token-status{display:flex;align-items:center;gap:6px;font-size:12px;padding:4px 8px;border-radius:6px}
+.token-status.set{background:#edfaf3;color:#0e6b3a}
+.token-status.unset{background:#fff3e8;color:#8a3e00;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="header">
+  <div class="header-left">
+    <span class="logo-badge">DAEWOONG</span>
+    <h1>디지털헬스 제품 카탈로그</h1>
+  </div>
+  <div class="header-right no-print">
+    <div id="token-status-badge" class="token-status unset" onclick="openTokenModal()">🔑 GitHub 연동 필요</div>
+    <button class="btn" onclick="exportPDF()">
+      <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z"/><polyline points="14,2 14,8 20,8"/></svg>
+      PDF 저장
+    </button>
+    <button class="btn" onclick="copyShareLink()">
+      <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+      링크 공유
+    </button>
+  </div>
+</header>
+<div class="main">
+  <aside class="sidebar no-print">
+    <div class="sel-summary">
+      <strong id="sel-count">0</strong>
+      <span>개 제품 선택됨</span>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">질환 계통</div>
+      <div id="filter-system"></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">기능 분류</div>
+      <div class="slicer-list">
+        <button class="slicer-btn slicer-all slicer-active" data-func="all" onclick="setFuncFilter(this)">전체</button>
+        <button class="slicer-btn" data-func="예방·예측" onclick="setFuncFilter(this)"><span class="slicer-dot dot-prev"></span>예방·예측</button>
+        <button class="slicer-btn" data-func="진단" onclick="setFuncFilter(this)"><span class="slicer-dot dot-diag"></span>진단</button>
+        <button class="slicer-btn" data-func="치료" onclick="setFuncFilter(this)"><span class="slicer-dot dot-treat"></span>치료</button>
+        <button class="slicer-btn" data-func="사후관리" onclick="setFuncFilter(this)"><span class="slicer-dot dot-after"></span>사후관리</button>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="filter-item" onclick="clearFilters()" style="color:#185FA5;font-weight:500">
+        <span style="font-size:12px">↺</span>&nbsp; 필터 초기화
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="goPreview()">
+        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        미리보기 보기
+      </button>
+      <button class="btn" style="width:100%;justify-content:center;margin-top:6px" onclick="clearSelection()">선택 초기화</button>
+    </div>
+  </aside>
+  <main class="content">
+    <div class="tabs no-print">
+      <button class="tab active" id="tab-browse" onclick="switchTab('browse')">📋 전체 탐색</button>
+      <button class="tab" id="tab-preview" onclick="switchTab('preview')">👁 선택 미리보기</button>
+      <button class="tab" id="tab-edit" onclick="switchTab('edit')">✏️ 편집</button>
+    </div>
+    <div id="pane-browse"><div class="grid" id="product-grid"></div></div>
+    <div id="pane-preview" style="display:none"><div id="preview-content"></div></div>
+    <div id="pane-edit" style="display:none">
+      <div id="edit-content"></div>
+      <button class="btn btn-primary" onclick="addProduct()" style="margin-top:8px">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        새 제품 추가
+      </button>
+    </div>
+  </main>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- GitHub 토큰 설정 모달 -->
+<div class="modal-overlay" id="token-modal" style="display:none">
+  <div class="modal-box">
+    <div class="modal-title">🔑 GitHub 연동 설정</div>
+    <div class="modal-desc">
+      편집 내용을 저장하면 GitHub의 <code>products.json</code>이 직접 업데이트되어 사이트에 반영됩니다.<br><br>
+      토큰은 이 브라우저에만 저장되며 외부로 전송되지 않습니다.
+    </div>
+    <div class="modal-field">
+      <label>GitHub Personal Access Token</label>
+      <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-primary" onclick="saveToken()">저장</button>
+      <button class="btn" onclick="closeTokenModal()">취소</button>
+      <button class="btn btn-danger" onclick="clearToken()" style="margin-left:auto">토큰 삭제</button>
+    </div>
+  </div>
+</div>
+
+<!-- 저장 중 오버레이 -->
+<div class="saving-overlay" id="saving-overlay" style="display:none">
+  <div class="saving-spinner"></div>
+  <div style="font-size:14px;color:#555">GitHub에 저장 중...</div>
+</div>
+
+<script>
+// ── GitHub 설정 ────────────────────────────────────────────────────────
+const GH_OWNER = 'codena1177';
+const GH_REPO = 'dh-catalog';
+const GH_FILE = 'data/products.json';  // repo 내 경로
+const GH_BRANCH = 'main';
+const TOKEN_KEY = 'gh_pat_dh_catalog';
+
+function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
+function saveToken() {
+  const t = document.getElementById('token-input').value.trim();
+  if (!t) { alert('토큰을 입력하세요'); return; }
+  localStorage.setItem(TOKEN_KEY, t);
+  closeTokenModal();
+  updateTokenBadge();
+  toast('GitHub 토큰이 저장되었습니다 ✓');
+}
+function clearToken() {
+  localStorage.removeItem(TOKEN_KEY);
+  closeTokenModal();
+  updateTokenBadge();
+  toast('토큰이 삭제되었습니다');
+}
+function openTokenModal() {
+  document.getElementById('token-input').value = getToken();
+  document.getElementById('token-modal').style.display = 'flex';
+}
+function closeTokenModal() { document.getElementById('token-modal').style.display = 'none'; }
+function updateTokenBadge() {
+  const badge = document.getElementById('token-status-badge');
+  if (getToken()) {
+    badge.className = 'token-status set';
+    badge.textContent = '✅ GitHub 연동됨';
+    badge.onclick = openTokenModal;
+  } else {
+    badge.className = 'token-status unset';
+    badge.textContent = '🔑 GitHub 연동 필요';
+    badge.onclick = openTokenModal;
+  }
+}
+
+// ── GitHub API로 products.json 저장 ───────────────────────────────────
+async function saveToGitHub(newProducts) {
+  const token = getToken();
+  if (!token) {
+    openTokenModal();
+    throw new Error('토큰 없음');
+  }
+
+  // 저장할 데이터: _imageData, _reportData, selected 등 UI 전용 필드 제외
+  const cleanProducts = newProducts.map(p => {
+    const { selected, _imageData, _reportData, ...clean } = p;
+    return clean;
+  });
+
+  // 현재 파일의 SHA 가져오기 (업데이트에 필요)
+  const getRes = await fetch(
+    `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}`,
+    { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' } }
+  );
+  if (!getRes.ok) {
+    const err = await getRes.json();
+    throw new Error(err.message || 'GitHub 파일 조회 실패');
+  }
+  const fileInfo = await getRes.json();
+  const sha = fileInfo.sha;
+
+  // JSON → base64
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(cleanProducts, null, 2))));
+
+  // 파일 업데이트
+  const putRes = await fetch(
+    `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: '카탈로그 제품 정보 업데이트',
+        content,
+        sha,
+        branch: GH_BRANCH
+      })
+    }
+  );
+  if (!putRes.ok) {
+    const err = await putRes.json();
+    throw new Error(err.message || 'GitHub 저장 실패');
+  }
+  return await putRes.json();
+}
+
+// ── State ──────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'dh_catalog_v2';
+const HIDDEN_KEY = 'dh_hidden_ids';
+let products = [];
+
+function loadData() {
+  fetch('data/products.json?v=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      const savedSel = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      const DEFAULT_HIDDEN = [18, 19, 20];
+      const storedHidden = JSON.parse(localStorage.getItem(HIDDEN_KEY) || 'null');
+      const hiddenIds = storedHidden !== null ? storedHidden : DEFAULT_HIDDEN;
+      if (storedHidden === null) localStorage.setItem(HIDDEN_KEY, JSON.stringify(DEFAULT_HIDDEN));
+      data = data.filter(p => !hiddenIds.includes(p.id));
+      products = data.map(p => ({
+        ...p,
+        selected: savedSel[p.id]?.selected || false,
+        _imageData: savedSel[p.id]?._imageData || null,
+        _ghImageUrl: savedSel[p.id]?._ghImageUrl || null,
+        _reportData: savedSel[p.id]?._reportData || null,
+        reportLabel: savedSel[p.id]?.reportLabel || p.reportLabel || '',
+        diseaseSystem: p.diseaseSystem || savedSel[p.id]?.diseaseSystem || '',
+        funcType: p.funcType || savedSel[p.id]?.funcType || '',
+        targetDisease: p.targetDisease || savedSel[p.id]?.targetDisease || '',
+        billingCode: p.billingCode || savedSel[p.id]?.billingCode || '',
+        price: p.price || savedSel[p.id]?.price || '',
+        indication: p.indication || savedSel[p.id]?.indication || '',
+        hospitals: p.hospitals || savedSel[p.id]?.hospitals || [],
+      }));
+      applyURLParams();
+      render();
+      updateTokenBadge();
+    })
+    .catch(() => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) { const savedObj = JSON.parse(saved); products = Object.values(savedObj); }
+      applyURLParams();
+      render();
+      updateTokenBadge();
+    });
+}
+
+function saveLocalData() {
+  const obj = {};
+  products.forEach(p => { obj[p.id] = p; });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
+}
+
+// ── Filters ────────────────────────────────────────────────────────────
+let activeFilters = { system: null, func: null };
+function setFuncFilter(btn) {
+  document.querySelectorAll('.slicer-btn').forEach(b => b.classList.remove('slicer-active'));
+  btn.classList.add('slicer-active');
+  const val = btn.dataset.func;
+  activeFilters.func = val === 'all' ? null : val;
+  renderGrid(); renderCategories();
+}
+function toggleFilter(type, val) {
+  if (activeFilters[type] === val) activeFilters[type] = null;
+  else activeFilters[type] = val;
+  renderGrid(); renderCategories();
+}
+function clearFilters() {
+  activeFilters = { system: null, func: null };
+  document.querySelectorAll('.slicer-btn').forEach(b => b.classList.remove('slicer-active'));
+  document.querySelector('.slicer-all').classList.add('slicer-active');
+  renderGrid(); renderCategories();
+}
+
+// ── Render ─────────────────────────────────────────────────────────────
+function render() { renderGrid(); renderCategories(); updateSelCount(); }
+function renderGrid() {
+  const grid = document.getElementById('product-grid');
+  let list = products;
+  if (activeFilters.system) list = list.filter(p => p.diseaseSystem === activeFilters.system);
+  if (activeFilters.func) list = list.filter(p => p.funcType === activeFilters.func);
+  grid.innerHTML = list.map(p => `
+    <div class="card ${p.selected ? 'selected' : ''}" onclick="toggleSelect(${p.id})">
+      <div class="check-ring"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="card-img">
+        ${p._ghImageUrl || p._imageData || p.image
+          ? `<img src="${p._ghImageUrl || p.image ? 'https://raw.githubusercontent.com/' + GH_OWNER + '/' + GH_REPO + '/' + GH_BRANCH + '/' + p.image : p._imageData}" alt="${p.name}" onerror="this.style.display='none';this.nextSibling.style.display='block'">`
+          : ''}
+        <span style="font-size:42px;${p._ghImageUrl || p._imageData || p.image ? 'display:none' : ''}">${p.icon || '📦'}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-cat">${p.category}</div>
+        <div class="card-dev">${p.developer}</div>
+      </div>
+    </div>`).join('');
+}
+function renderCategories() {
+  const systems = [...new Set(products.map(p => p.diseaseSystem).filter(Boolean))];
+  const makeItem = (label, val, type) => {
+    const isActive = activeFilters[type] === val;
+    const count = products.filter(p => p[type === 'system' ? 'diseaseSystem' : 'funcType'] === val).length;
+    return `<div class="filter-item ${isActive ? 'filter-active' : ''}" onclick="toggleFilter('${type}','${val}')">
+      <span style="font-size:12px;color:#aaa">›</span>
+      <span>${label}</span>
+      <span style="margin-left:auto;font-size:11px;color:#bbb">${count}</span>
+    </div>`;
+  };
+  document.getElementById('filter-system').innerHTML =
+    systems.map(s => makeItem(s, s, 'system')).join('') ||
+    '<div style="font-size:12px;color:#bbb;padding:4px 8px">편집탭에서 입력하세요</div>';
+}
+function updateSelCount() {
+  document.getElementById('sel-count').textContent = products.filter(p => p.selected).length;
+}
+
+// ── Tabs ───────────────────────────────────────────────────────────────
+function switchTab(name) {
+  ['browse','preview','edit'].forEach(t => {
+    document.getElementById('pane-' + t).style.display = 'none';
+    document.getElementById('tab-' + t).classList.remove('active');
+  });
+  document.getElementById('pane-' + name).style.display = 'block';
+  document.getElementById('tab-' + name).classList.add('active');
+  if (name === 'preview') renderPreview();
+  if (name === 'edit') renderEdit();
+}
+function goPreview() { switchTab('preview'); }
+
+// ── Selection ──────────────────────────────────────────────────────────
+function toggleSelect(id) {
+  const p = products.find(x => x.id === id);
+  if (p) { p.selected = !p.selected; saveLocalData(); render(); }
+}
+function clearSelection() {
+  products.forEach(p => p.selected = false);
+  saveLocalData(); render();
+}
+
+// ── Preview ────────────────────────────────────────────────────────────
+function renderPreview() {
+  const sel = products.filter(p => p.selected);
+  const el = document.getElementById('preview-content');
+  if (!sel.length) {
+    el.innerHTML = `<div class="empty">
+      <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <p>"전체 탐색" 탭에서 제품을 선택하세요</p></div>`;
+    return;
+  }
+  el.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem" class="no-print">
+      <p style="font-size:13px;color:#888">${sel.length}개 제품 선택됨</p>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" onclick="exportPDF()">
+          <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2z"/><polyline points="14,2 14,8 20,8"/></svg>
+          PDF 저장
+        </button>
+        <button class="btn" onclick="copyShareLink()">링크 공유</button>
+        <button class="btn" onclick="switchTab('browse')">← 다시 선택</button>
+      </div>
+    </div>
+    <div class="preview-wrap">
+    ${sel.map(p => `
+      <div class="preview-item">
+        <div class="preview-header">
+          <div class="preview-img">
+            ${p._ghImageUrl || p.image
+              ? `<img src="${p._ghImageUrl || ('https://raw.githubusercontent.com/' + GH_OWNER + '/' + GH_REPO + '/' + GH_BRANCH + '/' + p.image)}" alt="${p.name}" onerror="this.style.display='none'">`
+              : p._imageData ? `<img src="${p._imageData}" alt="${p.name}">` : `<span>${p.icon || '📦'}</span>`}
+          </div>
+          <div class="preview-meta">
+            <div class="preview-name">${p.name}</div>
+            <div class="preview-cat">${p.category}</div>
+            <div class="preview-desc">${p.desc}</div>
+          </div>
+        </div>
+        <div class="preview-fields">
+          <div class="pfield"><div class="pfield-label">질환 계통</div><div class="pfield-value">${p.diseaseSystem||'-'}</div></div>
+          <div class="pfield"><div class="pfield-label">기능 분류</div><div class="pfield-value">${p.funcType||'-'}</div></div>
+          <div class="pfield"><div class="pfield-label">원개발사</div><div class="pfield-value">${p.developer}</div></div>
+          <div class="pfield"><div class="pfield-label">판매사</div><div class="pfield-value">${p.seller}</div></div>
+          <div class="pfield full"><div class="pfield-label">타겟 질환</div><div class="pfield-value">${p.targetDisease||'-'}</div></div>
+          <div class="pfield"><div class="pfield-label">수가 / 청구 코드</div><div class="pfield-value">${p.billingCode||'-'}</div></div>
+          <div class="pfield"><div class="pfield-label">도입 비용 / 가격</div><div class="pfield-value">${p.price||'-'}</div></div>
+          <div class="pfield full"><div class="pfield-label">적응증 / 대상 환자</div><div class="pfield-value">${p.indication||'-'}</div></div>
+          <div class="pfield full"><div class="pfield-label">주요 사용 병원</div>
+            <div class="hosp-tags">${(p.hospitals||[]).map(h => `<span class="htag">${h}</span>`).join('')}</div>
+          </div>
+          <div class="pfield full"><div class="pfield-label">레포트 샘플</div>
+            ${p._reportData
+              ? `<button class="report-link" onclick="openReport(${p.id})">
+                  <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                  ${p.reportLabel || 'PDF 샘플 보기'}
+                </button>`
+              : `<span style="color:#bbb;font-size:13px">준비 중</span>`}
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>`;
+}
+function openReport(id) {
+  const p = products.find(x => x.id === id);
+  if (!p || !p._reportData) return;
+  const win = window.open('');
+  win.document.write(`<iframe src="${p._reportData}" style="width:100%;height:100vh;border:none"></iframe>`);
+}
+
+// ── Edit ───────────────────────────────────────────────────────────────
+function renderEdit() {
+  document.getElementById('edit-content').innerHTML = products.map(p => `
+    <div class="edit-card" id="ec-${p.id}">
+      <div class="edit-card-header">
+        <span style="font-size:22px">${p.icon || '📦'}</span>
+        <span class="edit-card-title">${p.name}</span>
+        <button class="btn btn-danger" style="padding:4px 10px;font-size:12px" onclick="removeProduct(${p.id})">삭제</button>
+      </div>
+      <div class="edit-grid">
+        <div class="edit-field"><label>제품명</label><input id="e-name-${p.id}" value="${esc(p.name)}"></div>
+        <div class="edit-field"><label>카테고리</label><input id="e-category-${p.id}" value="${esc(p.category)}"></div>
+        <div class="edit-field"><label>이모지 아이콘</label><input id="e-icon-${p.id}" value="${esc(p.icon||'📦')}"></div>
+        <div class="edit-field"><label>원개발사</label><input id="e-developer-${p.id}" value="${esc(p.developer)}"></div>
+        <div class="edit-field"><label>판매사</label><input id="e-seller-${p.id}" value="${esc(p.seller)}"></div>
+        <div class="edit-field full"><label>제품 설명</label><textarea id="e-desc-${p.id}">${esc(p.desc)}</textarea></div>
+        <div class="edit-field"><label>질환 계통</label><input id="e-diseaseSystem-${p.id}" value="${esc(p.diseaseSystem||'')}"></div>
+        <div class="edit-field">
+          <label>기능 분류</label>
+          <select id="e-funcType-${p.id}">
+            <option value="">선택하세요</option>
+            <option value="예방·예측" ${p.funcType==='예방·예측'?'selected':''}>예방·예측</option>
+            <option value="진단" ${p.funcType==='진단'?'selected':''}>진단</option>
+            <option value="치료" ${p.funcType==='치료'?'selected':''}>치료</option>
+            <option value="사후관리" ${p.funcType==='사후관리'?'selected':''}>사후관리</option>
+          </select>
+        </div>
+        <div class="edit-field full"><label>타겟 질환</label><input id="e-targetDisease-${p.id}" value="${esc(p.targetDisease||'')}"></div>
+        <div class="edit-field"><label>수가 / 청구 코드</label><input id="e-billingCode-${p.id}" value="${esc(p.billingCode||'')}"></div>
+        <div class="edit-field"><label>도입 비용 / 가격</label><input id="e-price-${p.id}" value="${esc(p.price||'')}"></div>
+        <div class="edit-field full"><label>적응증 / 대상 환자</label><textarea id="e-indication-${p.id}">${esc(p.indication||'')}</textarea></div>
+        <div class="edit-field full">
+          <label>제품 사진</label>
+          <div class="file-upload-area" onclick="document.getElementById('img-inp-${p.id}').click()">
+            <input type="file" id="img-inp-${p.id}" accept="image/*" onchange="uploadImage(${p.id}, this)">
+            ${p._imageData ? `<img src="${p._imageData}" style="max-height:80px;border-radius:6px">` : `<svg style="width:24px;height:24px;stroke:#bbb;fill:none;stroke-width:1.5;margin:0 auto 4px;display:block" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>`}
+            <div class="hint">${p._imageData ? '클릭하여 교체' : '이미지 파일 클릭하여 업로드 (JPG, PNG)'}</div>
+          </div>
+        </div>
+        <div class="edit-field full">
+          <label>레포트 샘플 PDF</label>
+          <div class="file-upload-area" onclick="document.getElementById('pdf-inp-${p.id}').click()">
+            <input type="file" id="pdf-inp-${p.id}" accept=".pdf" onchange="uploadPDF(${p.id}, this)">
+            ${p._reportData ? `<div class="file-thumb"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>${p.reportLabel || 'PDF 업로드됨'}<button onclick="removeReport(event,${p.id})">×</button></div>` : `<svg style="width:20px;height:20px;stroke:#bbb;fill:none;stroke-width:1.5;margin:0 auto 4px;display:block" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>`}
+            <div class="hint">${p._reportData ? '클릭하여 교체' : 'PDF 파일 클릭하여 업로드'}</div>
+          </div>
+        </div>
+        <div class="edit-field full">
+          <label>주요 사용 병원</label>
+          <div class="tag-row" id="htag-row-${p.id}">
+            ${(p.hospitals||[]).map((h,i) => `<span class="etag">${h}<button onclick="removeHosp(${p.id},${i})">×</button></span>`).join('')}
+          </div>
+          <div class="tag-add-row">
+            <input id="hosp-inp-${p.id}" placeholder="병원명 입력 후 추가" onkeydown="if(event.key==='Enter')addHosp(${p.id})">
+            <button class="btn" onclick="addHosp(${p.id})">+ 추가</button>
+          </div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="saveProduct(${p.id})">
+          <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17,21 17,13 7,13 7,21"/><polyline points="7,3 7,8 15,8"/></svg>
+          저장 (GitHub 반영)
+        </button>
+      </div>
+    </div>`).join('');
+}
+
+async function saveProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+
+  // 폼에서 값 읽기
+  p.name = document.getElementById(`e-name-${id}`).value.trim() || p.name;
+  p.category = document.getElementById(`e-category-${id}`).value.trim() || p.category;
+  p.icon = document.getElementById(`e-icon-${id}`).value.trim() || p.icon;
+  p.developer = document.getElementById(`e-developer-${id}`).value.trim();
+  p.seller = document.getElementById(`e-seller-${id}`).value.trim();
+  p.desc = document.getElementById(`e-desc-${id}`).value.trim();
+  p.diseaseSystem = document.getElementById(`e-diseaseSystem-${id}`).value.trim();
+  p.funcType = document.getElementById(`e-funcType-${id}`).value;
+  p.targetDisease = document.getElementById(`e-targetDisease-${id}`).value.trim();
+  p.billingCode = document.getElementById(`e-billingCode-${id}`).value.trim();
+  p.price = document.getElementById(`e-price-${id}`).value.trim();
+  p.indication = document.getElementById(`e-indication-${id}`).value.trim();
+
+  // 로컬 저장
+  saveLocalData();
+  render();
+
+  // GitHub에 저장
+  if (!getToken()) {
+    toast('⚠️ GitHub 토큰을 설정하면 사이트에 바로 반영됩니다');
+    openTokenModal();
+    return;
+  }
+
+  document.getElementById('saving-overlay').style.display = 'flex';
+  try {
+    await saveToGitHub(products);
+    toast('✅ GitHub에 저장됨! 1~2분 후 사이트에 반영됩니다');
+  } catch(e) {
+    console.error(e);
+    toast('❌ GitHub 저장 실패: ' + e.message);
+  } finally {
+    document.getElementById('saving-overlay').style.display = 'none';
+  }
+}
+
+async function uploadImage(id, input) {
+  const file = input.files[0]; if (!file) return;
+  if (file.size > 5 * 1024 * 1024) { toast('파일 크기는 5MB 이하로 해주세요'); return; }
+
+  const reader = new FileReader();
+  reader.onload = async e => {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+
+    // 로컬 미리보기용 저장
+    p._imageData = e.target.result;
+    saveLocalData();
+    renderEdit();
+
+    // GitHub에 이미지 파일 업로드
+    if (!getToken()) {
+      toast('이미지 로컬 저장됨 (GitHub 토큰 설정 시 전체 반영)');
+      return;
+    }
+
+    document.getElementById('saving-overlay').style.display = 'flex';
+    try {
+      // base64 데이터만 추출 (data:image/png;base64, 부분 제거)
+      const base64Data = e.target.result.split(',')[1];
+      const ext = file.name.split('.').pop().toLowerCase();
+      const fileName = `product_${id}_${Date.now()}.${ext}`;
+      const ghPath = `assets/images/${fileName}`;
+
+      // 기존 파일 SHA 확인 (없으면 신규 생성)
+      let sha = null;
+      try {
+        const checkRes = await fetch(
+          `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}?ref=${GH_BRANCH}`,
+          { headers: { Authorization: `Bearer ${getToken()}`, Accept: 'application/vnd.github+json' } }
+        );
+        if (checkRes.ok) { const info = await checkRes.json(); sha = info.sha; }
+      } catch(e) {}
+
+      const body = {
+        message: `제품 이미지 업로드: ${p.name}`,
+        content: base64Data,
+        branch: GH_BRANCH
+      };
+      if (sha) body.sha = sha;
+
+      const putRes = await fetch(
+        `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${ghPath}`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+            Accept: 'application/vnd.github+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        }
+      );
+
+      if (!putRes.ok) throw new Error('이미지 업로드 실패');
+
+      // products.json에 이미지 경로 저장
+      p.image = ghPath;
+      p._ghImageUrl = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/${GH_BRANCH}/${ghPath}`;
+      saveLocalData();
+
+      // products.json도 업데이트
+      await saveToGitHub(products);
+      toast('✅ 이미지 업로드 완료! 1~2분 후 반영됩니다');
+    } catch(err) {
+      console.error(err);
+      toast('❌ GitHub 이미지 업로드 실패: ' + err.message);
+    } finally {
+      document.getElementById('saving-overlay').style.display = 'none';
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function uploadPDF(id, input) {
+  const file = input.files[0]; if (!file) return;
+  if (file.size > 10 * 1024 * 1024) { toast('파일 크기는 10MB 이하로 해주세요'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    const p = products.find(x => x.id === id);
+    if (p) { p._reportData = e.target.result; p.reportLabel = file.name; saveLocalData(); renderEdit(); toast('PDF 업로드 완료'); }
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeReport(event, id) {
+  event.stopPropagation();
+  const p = products.find(x => x.id === id);
+  if (p) { p._reportData = null; p.reportLabel = ''; saveLocalData(); renderEdit(); }
+}
+
+function addHosp(id) {
+  const inp = document.getElementById(`hosp-inp-${id}`);
+  const val = inp.value.trim(); if (!val) return;
+  const p = products.find(x => x.id === id);
+  if (p) { if(!p.hospitals) p.hospitals=[]; p.hospitals.push(val); saveLocalData(); renderEdit(); }
+  inp.value = '';
+}
+
+function removeHosp(id, idx) {
+  const p = products.find(x => x.id === id);
+  if (p) { p.hospitals.splice(idx, 1); saveLocalData(); renderEdit(); }
+}
+
+async function addProduct() {
+  const newId = products.length ? Math.max(...products.map(x => x.id)) + 1 : 1;
+  products.push({ id: newId, name: '새 제품', category: '카테고리', icon: '📦',
+    developer: '', seller: '대웅제약', reportLabel: '', hospitals: [], desc: '', selected: false });
+  saveLocalData(); renderEdit(); toast('제품이 추가되었습니다');
+}
+
+async function removeProduct(id) {
+  if (!confirm('정말 삭제하시겠습니까?')) return;
+  const hiddenIds = JSON.parse(localStorage.getItem(HIDDEN_KEY) || '[]');
+  if (!hiddenIds.includes(id)) { hiddenIds.push(id); }
+  localStorage.setItem(HIDDEN_KEY, JSON.stringify(hiddenIds));
+  products = products.filter(x => x.id !== id);
+  saveLocalData(); render(); renderEdit();
+
+  if (getToken()) {
+    document.getElementById('saving-overlay').style.display = 'flex';
+    try {
+      await saveToGitHub(products);
+      toast('✅ 삭제 후 GitHub에 저장됨');
+    } catch(e) {
+      toast('❌ GitHub 저장 실패: ' + e.message);
+    } finally {
+      document.getElementById('saving-overlay').style.display = 'none';
+    }
+  } else {
+    toast('삭제되었습니다 (GitHub 토큰 설정 시 사이트에 반영)');
+  }
+}
+
+function copyShareLink() {
+  const ids = products.filter(p => p.selected).map(p => p.id).join(',');
+  const url = window.location.href.split('?')[0] + (ids ? `?sel=${ids}` : '');
+  navigator.clipboard.writeText(url)
+    .then(() => toast('링크가 복사되었습니다 ✓'))
+    .catch(() => prompt('아래 링크를 복사하세요:', url));
+}
+
+function exportPDF() {
+  switchTab('preview');
+  setTimeout(() => window.print(), 300);
+}
+
+function applyURLParams() {
+  const params = new URLSearchParams(window.location.search);
+  const sel = params.get('sel');
+  if (sel) {
+    const ids = sel.split(',').map(Number);
+    products.forEach(p => { p.selected = ids.includes(p.id); });
+    saveLocalData();
+  }
+}
+
+function esc(str) { return (str||'').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+loadData();
+</script>
+</body>
+</html>
