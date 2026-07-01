@@ -14,7 +14,13 @@
       "분당서울대병원"
     ],
     "desc": "12유도 심전도 데이터를 AI로 분석하여 좌심실수축기능부전, 좌심실이완기능부전, 중증 대동맥판막 협착증 가능성을 점수와 위험도로 표시하는 소프트웨어 의료기기입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 2,
@@ -30,7 +36,13 @@
       "고려대병원"
     ],
     "desc": "웨어러블 형태의 장기 심전도 모니터링(홀터) 솔루션입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 3,
@@ -45,7 +57,13 @@
       "인하대병원"
     ],
     "desc": "AI 기반 안저 촬영 및 분석 솔루션입니다.",
-    "image": ""
+    "image": "assets/images/product-3-옵티나-1782889984946.webp",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 4,
@@ -60,7 +78,13 @@
       "한양대병원"
     ],
     "desc": "AI 기반 영상 진단 보조 솔루션입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 5,
@@ -76,7 +100,13 @@
       "인제대부속병원"
     ],
     "desc": "디지털 방식의 폐기능 검사(PFT) 장비입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 6,
@@ -90,7 +120,13 @@
       "건강보험공단일산병원"
     ],
     "desc": "흉부 X-ray를 기반으로 AI가 골다공증을 스크리닝하는 솔루션입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 7,
@@ -104,7 +140,13 @@
       "서울재활병원"
     ],
     "desc": "디지털 무릎 재활 앱 기반 솔루션입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 8,
@@ -118,7 +160,13 @@
       "노인전문병원"
     ],
     "desc": "근전도(EMG) 기반 AI 근감소증 진단 솔루션입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 9,
@@ -130,7 +178,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "반지형 웨어러블 기기를 통해 24시간 연속 혈압을 측정하는 커프리스 혈압측정기입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 10,
@@ -142,7 +196,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "1분마다 실시간으로 혈당 수치를 확인할 수 있는 연속혈당측정기(CGM)입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 11,
@@ -154,7 +214,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "재활운동과 근력측정을 통합한 근골격계 디지털 치료기기입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 12,
@@ -166,7 +232,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "인지기능 저하를 지연시키는 디지털 치료기기로, 경도인지장애 및 치매 예방에 활용됩니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 13,
@@ -178,7 +250,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "중추 청각인지 기능 향상을 위한 디지털 재활치료기입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 14,
@@ -190,7 +268,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "개인 맞춤형 인지 중재 훈련을 제공하는 디지털 치료 솔루션입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 15,
@@ -202,7 +286,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "웨어러블 의료기기와 인공지능을 활용해 입원환자의 심혈관 지표를 실시간으로 모니터링하는 시스템입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 16,
@@ -214,7 +304,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "실시간 혈당 모니터링을 통한 스마트 환자관리 솔루션입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 17,
@@ -226,7 +322,13 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "의료 현장의 실시간 음성을 기반으로 AI가 자동으로 의무기록을 작성해주는 솔루션입니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   },
   {
     "id": 21,
@@ -238,6 +340,12 @@
     "reportLabel": "",
     "hospitals": [],
     "desc": "개인 맞춤형 재활 보조 웨어러블 로봇으로, 근력 강화 및 이동 보조를 지원합니다.",
-    "image": ""
+    "image": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   }
 ]
