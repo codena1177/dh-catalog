@@ -7,13 +7,8 @@
     "developer": "Medical AI",
     "seller": "대웅제약",
     "reportLabel": "AITIA 레포트 샘플",
-    "hospitals": [
-      "서울아산병원",
-      "삼성서울병원",
-      "세브란스병원",
-      "분당서울대병원"
-    ],
-    "desc": "12유도 심전도 검사 데이터를 AI로 분석하여 [LVSD(좌심실 수축 기능부전)] [LVDD(좌심실 이완기능 부전)] [AS(대동맥 판막 협착증)] [MI(급성 심근경색)] \n가능성을 점수와 위험도로 표시하는 진단보조 소프트웨어 의료기기",
+    "hospitals": [],
+    "desc": "12유도 심전도 검사 데이터를 AI로 분석하여 [LVSD(좌심실 수축 기능부전)] [LVDD(좌심실 이완기능 부전)] [AS(대동맥 판막 협착증)] [MI(급성 심근경색)] 가능성을 점수와 위험도로 표시하는 \n진단보조 소프트웨어 의료기기",
     "image": "assets/images/product-1-에티아-시리즈-(aitia-series)-1782962910372.webp",
     "diseaseSystem": "순환기계",
     "funcType": "예방·예측",
