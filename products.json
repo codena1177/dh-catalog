@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "에티아 시리즈 (AiTiA Series)",
+    "name": "에티아 시리즈(AiTiA Series)",
     "category": "AI 심장질환 조기 선별 솔루션",
     "icon": "🫀",
     "developer": "Medical AI",
@@ -55,22 +55,18 @@
   },
   {
     "id": 5,
-    "name": "더스피로킷",
-    "category": "디지털 폐기능 검사",
+    "name": "더-스피로킷(The-Spirokit)",
+    "category": "무선 핸디형 폐 기능 검사기",
     "icon": "🫁",
-    "developer": "스피로킷",
+    "developer": "TR",
     "seller": "대웅제약",
     "reportLabel": "",
-    "hospitals": [
-      "아주대병원",
-      "가천대길병원",
-      "인제대부속병원"
-    ],
-    "desc": "디지털 방식의 폐기능 검사(PFT) 장비입니다.",
+    "hospitals": [],
+    "desc": "AI 기반 천식&COPD 판독 보조의 무선 핸디형 폐 기능 검사기",
     "image": "assets/images/product-5-더스피로킷-1782967532536.webp",
-    "diseaseSystem": "",
-    "funcType": "",
-    "targetDisease": "",
+    "diseaseSystem": "호흡기계",
+    "funcType": "진단",
+    "targetDisease": "호흡기 질환",
     "billingCode": "",
     "price": "",
     "indication": ""
