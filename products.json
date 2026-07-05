@@ -54,27 +54,6 @@
     "indication": ""
   },
   {
-    "id": 4,
-    "name": "위스키",
-    "category": "AI 진단 솔루션",
-    "icon": "🔬",
-    "developer": "위스키",
-    "seller": "대웅제약",
-    "reportLabel": "",
-    "hospitals": [
-      "경희대병원",
-      "한양대병원"
-    ],
-    "desc": "AI 기반 영상 진단 보조 솔루션입니다.",
-    "image": "",
-    "diseaseSystem": "",
-    "funcType": "",
-    "targetDisease": "",
-    "billingCode": "",
-    "price": "",
-    "indication": ""
-  },
-  {
     "id": 5,
     "name": "더스피로킷",
     "category": "디지털 폐기능 검사",
