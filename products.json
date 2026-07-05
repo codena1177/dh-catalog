@@ -24,8 +24,8 @@
   },
   {
     "id": 2,
-    "name": "모비케어(mobiCARE)",
-    "category": "장기 웨어러블 심전도",
+    "name": "모비케어",
+    "category": "웨어러블 홀터",
     "icon": "⌚",
     "developer": "SEERS",
     "seller": "대웅제약",
@@ -35,7 +35,7 @@
       "강남세브란스",
       "고려대병원"
     ],
-    "desc": "부정맥 정밀 진단 장기 웨어러블 심전도(홀터) 검사 의료기기",
+    "desc": "부정맥 진단 장기 웨어러블 심전도(홀터) 검사 의료기기",
     "image": "assets/images/product-2-모비케어-1782892962983.webp",
     "diseaseSystem": "순환기계",
     "funcType": "진단",
