@@ -14,8 +14,8 @@
     "funcType": "예방·예측",
     "targetDisease": "좌심실 수축기능부전(LVSD), 좌심실 이완기능부전(LVDD), 대동맥판막 협착증(AS), 급성 심근경색(MI)",
     "billingCode": "비급여",
-    "price": "",
-    "indication": ""
+    "price": "12,000원",
+    "indication": "만 18세 이상의 심장질환 조기 선별이 필요한 환자 및 고위험인자 보유 환자, 만성질환으로 인한 내원 환자 등"
   },
   {
     "id": 2,
