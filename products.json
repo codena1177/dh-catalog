@@ -85,9 +85,9 @@
     "diseaseSystem": "근골격계",
     "funcType": "예방·예측",
     "targetDisease": "골다공증",
-    "billingCode": "",
-    "price": "",
-    "indication": ""
+    "billingCode": "비급여",
+    "price": "-",
+    "indication": "[외래] 폐경 여성 또는 70세 이상 남성 [검진] 50세 이상 남녀"
   },
   {
     "id": 7,
