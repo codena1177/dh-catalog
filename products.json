@@ -109,16 +109,14 @@
   },
   {
     "id": 7,
-    "name": "모라큐어",
-    "category": "디지털 재활",
+    "name": "모라큐어(MORE cure) PFP",
+    "category": "디지털 치료제",
     "icon": "🦵",
-    "developer": "모라큐어",
+    "developer": "EverEx",
     "seller": "대웅제약",
     "reportLabel": "",
-    "hospitals": [
-      "서울재활병원"
-    ],
-    "desc": "디지털 무릎 재활 앱 기반 솔루션입니다.",
+    "hospitals": [],
+    "desc": "슬개대퇴통증 재활용 디지털 치료기기",
     "image": "assets/images/product-7-모라큐어-1784096912941.webp",
     "diseaseSystem": "",
     "funcType": "",
