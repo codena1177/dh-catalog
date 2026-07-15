@@ -308,5 +308,22 @@
     "billingCode": "",
     "price": "",
     "indication": ""
+  },
+  {
+    "id": 22,
+    "name": "위스키 CVD",
+    "category": "순환기계",
+    "icon": "❤️",
+    "developer": "ARK",
+    "seller": "대웅제약",
+    "reportLabel": "",
+    "hospitals": [],
+    "desc": "",
+    "diseaseSystem": "",
+    "funcType": "",
+    "targetDisease": "",
+    "billingCode": "",
+    "price": "",
+    "indication": ""
   }
 ]
