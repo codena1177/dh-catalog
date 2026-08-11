@@ -43,32 +43,40 @@
     "developer": "ARK",
     "seller": "대웅제약",
     "reportLabel": "",
-    "hospitals": [],
+    "hospitals": [
+      "고려대학교 구로병원",
+      "고려대학교 안산병원",
+      "원광대학교병원",
+      "강릉아산병원",
+      "일산차병원"
+    ],
     "desc": "안저 카메라로 촬영한 이미지를 AI 기반으로 3대 실명질환(황반변성, 당뇨성 망막병증, 녹내장)을 실시간으로 분석하는 솔루션",
     "image": "assets/images/product-3-옵티나-1782891776970.webp",
     "diseaseSystem": "안과계",
     "funcType": "진단",
     "targetDisease": "3대 실명질환(황반변성, 당뇨성 막망병증, 녹내장)",
     "billingCode": "",
-    "price": "",
-    "indication": ""
+    "price": "[옵티나]1,400만원 + [위스키] 330만원(1,000회권 기준) ※ PC·전동테이블 등 부외품 비용 별도",
+    "indication": "당뇨병·고혈압 등 만성질환자 / 40세 이상 성인 및 실명질환 위험군 / 시력 저하, 비문증 등 안과적 증상이 있는 환자 / 정기적인 안저검사가 필요한 환자 / 건강검진 수검자"
   },
   {
     "id": 22,
     "name": "위스키 CVD(WISKY CVD)",
     "category": "심혈관질환 AI 위험도 예측 솔루션",
     "icon": "❤️",
-    "developer": "ARK",
+    "developer": "㈜자이메드",
     "seller": "대웅제약",
     "reportLabel": "",
-    "hospitals": [],
+    "hospitals": [
+      "한국건강관리협회 메디체크 전국지부"
+    ],
     "desc": "망막 사진을 AI로 분석하여 경동맥 죽상경화와 관상동맥석회화의 위험도 예측 솔루션",
     "diseaseSystem": "순환기계",
     "funcType": "예방·예측",
-    "targetDisease": "경동맥 죽상경화, 관상동맥석회화",
-    "billingCode": "",
-    "price": "",
-    "indication": "",
+    "targetDisease": "경동맥 죽상경화증, 관상동맥석회화증",
+    "billingCode": "비급여",
+    "price": "1,5000원(건)",
+    "indication": "만 40세 이상 성인 중 고혈압·당뇨병·이상지질혈증·비만·흡연 등 심혈관질환 위험요인을 보유한 환자 또는 FRS·PCE 10% 이상으로 추가 위험 평가가 필요한 환자",
     "image": "assets/images/product-22-위스키-cvd-1784095024752.webp"
   },
   {
@@ -97,15 +105,20 @@
     "developer": "PROMEDIUS",
     "seller": "대웅제약",
     "reportLabel": "",
-    "hospitals": [],
+    "hospitals": [
+      "서울성심병원",
+      "서울척병원",
+      "안양윌스기념병원",
+      "강남차병원"
+    ],
     "desc": "흉부 X-ray 기반 골다공증 선별 AI 소프트웨어로 골다공증 위험도를 예측",
     "image": "assets/images/product-6-오스테오시그널-1783253371077.webp",
     "diseaseSystem": "근골격계",
     "funcType": "예방·예측",
     "targetDisease": "골다공증",
     "billingCode": "비급여",
-    "price": "-",
-    "indication": "[외래] 폐경 여성 또는 70세 이상 남성 [검진] 50세 이상 남녀"
+    "price": "5,000원(건)",
+    "indication": "[검진] 50세 이상 수검자 / [외래] 골다공증 진단 이력이 없는 50세 이상 폐경 여성 또는 70세 이상의 남성"
   },
   {
     "id": 7,
