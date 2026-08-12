@@ -69,7 +69,7 @@
     "icon": "❤️",
     "developer": "㈜자이메드",
     "seller": "대웅제약",
-    "reportLabel": "",
+    "reportLabel": "[옵티나&위스키]CVD 결과지 sample.pdf",
     "hospitals": [
       "한국건강관리협회 메디체크 전국지부"
     ],
@@ -81,7 +81,7 @@
     "price": "1,5000원(건)",
     "indication": "만 40세 이상 성인 중 고혈압·당뇨병·이상지질혈증·비만·흡연 등 심혈관질환 위험요인을 보유한 환자 또는 FRS·PCE 10% 이상으로 추가 위험 평가가 필요한 환자",
     "image": "assets/images/product-22-위스키-cvd-1784095024752.webp",
-    "reportPath": ""
+    "reportPath": "assets/reports/report-22-위스키-cvd(wisky-cvd)-[옵티나&위스키]cvd-결과지-sample-1786521051480.pdf"
   },
   {
     "id": 5,
