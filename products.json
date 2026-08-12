@@ -90,7 +90,7 @@
     "icon": "🫁",
     "developer": "TR",
     "seller": "대웅제약",
-    "reportLabel": "",
+    "reportLabel": "[더스피로킷]결과지 sample.pdf",
     "hospitals": [],
     "desc": "AI 기반 천식&COPD 판독 보조의 무선 핸디형 폐 기능 검사기",
     "image": "assets/images/product-5-더스피로킷-1782967532536.webp",
@@ -100,7 +100,7 @@
     "billingCode": "59,340원 / F6002 + E7123 ※동시 청구 가능",
     "price": "[기기 표준가] 550만원 + [소프트웨어] 2,300원(건) ※판독 1회+필터 1개 포함",
     "indication": "천식 및 COPD 환자 및 의심환자, 검진 수검자",
-    "reportPath": ""
+    "reportPath": "assets/reports/report-5-더-스피로킷(the-spirokit)-[더스피로킷]결과지-sample-1786522644069.pdf"
   },
   {
     "id": 6,
