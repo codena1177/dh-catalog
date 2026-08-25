@@ -8,7 +8,7 @@
     "seller": "대웅제약",
     "reportLabel": "AITIA 레포트 샘플",
     "hospitals": [],
-    "desc": "12유도 심전도 검사 데이터를 AI로 분석하여 [LVSD(좌심실 수축 기능부전)] [LVDD(좌심실 이완기능 부전)] [AS(대동맥 판막 협착증)] [MI(급성 심근경색)] \n가능성을 점수와 위험도로 표시하는 진단보조 소프트웨어 의료기기",
+    "desc": "12유도 심전도 검사 데이터를 AI로 분석하여 \n[LVSD(좌심실 수축 기능부전)] [LVDD(좌심실 이완기능 부전)] [AS(대동맥 판막 협착증)] [MI(급성 심근경색)] \n가능성을 점수와 위험도로 표시하는 진단보조 소프트웨어 의료기기",
     "image": "assets/images/product-1-에티아-시리즈-(aitia-series)-1782962910372.webp",
     "diseaseSystem": "순환기계",
     "funcType": "예방·예측",
@@ -16,7 +16,13 @@
     "billingCode": "비급여",
     "price": "12,000원",
     "indication": "만 18세 이상의 심장질환 조기 선별이 필요한 환자 및 고위험인자 보유 환자, 만성질환으로 인한 내원 환자 등",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 2,
@@ -35,7 +41,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 3,
@@ -60,7 +72,13 @@
     "billingCode": "[의원] 6,550원(양안: 13,100원) [병원] 6,027원(양안: 12,054원) / E6670",
     "price": "[옵티나]1,400만원 + [위스키] 330만원(1,000회권 기준) ※ PC·전동테이블 등 부외품 비용 별도",
     "indication": "[적응증] 망막혈관이상, 망막혈관폐쇄, 고혈압망막병증, 황반질환, 근시성 황반변성, 황반원공, 망막전막, 망막변성, 황반이상증, 스타가르트병 등\n[대상 환자] 당뇨병·고혈압 등 만성질환자 / 40세 이상 성인 및 실명질환 위험군 / 시력 저하, 비문증 등 안과적 증상이 있는 환자 / 정기적인 안저검사가 필요한 환자 / 건강검진 수검자",
-    "reportPath": "assets/reports/report-3-옵티나&위스키(optina&wisky)-[옵티나&위스키]3대실명질환-결과지-sample-1786521035932.pdf"
+    "reportPath": "assets/reports/report-3-옵티나&위스키(optina&wisky)-[옵티나&위스키]3대실명질환-결과지-sample-1786521035932.pdf",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 22,
@@ -81,7 +99,13 @@
     "price": "1,5000원(건)",
     "indication": "만 40세 이상 성인 중 고혈압·당뇨병·이상지질혈증·비만·흡연 등 심혈관질환 위험요인을 보유한 환자 또는 FRS·PCE 10% 이상으로 추가 위험 평가가 필요한 환자",
     "image": "assets/images/product-22-위스키-cvd-1784095024752.webp",
-    "reportPath": "assets/reports/report-22-위스키-cvd(wisky-cvd)-[옵티나&위스키]cvd-결과지-sample-1786521051480.pdf"
+    "reportPath": "assets/reports/report-22-위스키-cvd(wisky-cvd)-[옵티나&위스키]cvd-결과지-sample-1786521051480.pdf",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 5,
@@ -100,7 +124,13 @@
     "billingCode": "59,340원 / F6002 + E7123 ※동시 청구 가능",
     "price": "[기기 표준가] 550만원 + [소프트웨어] 2,300원(건) ※판독 1회+필터 1개 포함",
     "indication": "천식 및 COPD 환자 및 의심환자, 검진 수검자",
-    "reportPath": "assets/reports/report-5-더-스피로킷(the-spirokit)-[더스피로킷]결과지-sample-1786522644069.pdf"
+    "reportPath": "assets/reports/report-5-더-스피로킷(the-spirokit)-[더스피로킷]결과지-sample-1786522644069.pdf",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 6,
@@ -124,7 +154,13 @@
     "billingCode": "비급여",
     "price": "5,000원(건)",
     "indication": "[검진] 50세 이상 수검자 / [외래] 골다공증 진단 이력이 없는 50세 이상 폐경 여성 또는 70세 이상의 남성",
-    "reportPath": "assets/reports/report-6-오스테오-시그널(osteo-signal)-[오스테오시그널]결과지-sample(유소견)-1786521075878.pdf"
+    "reportPath": "assets/reports/report-6-오스테오-시그널(osteo-signal)-[오스테오시그널]결과지-sample(유소견)-1786521075878.pdf",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 7,
@@ -143,7 +179,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 8,
@@ -164,7 +206,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 9,
@@ -183,7 +231,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 10,
@@ -202,7 +256,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 11,
@@ -221,7 +281,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 12,
@@ -240,7 +306,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 13,
@@ -259,7 +331,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 14,
@@ -278,7 +356,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 15,
@@ -297,7 +381,13 @@
     "billingCode": "",
     "price": "",
     "indication": "입원 중 지속적인 생체신호 관찰이 필요한 환자",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 16,
@@ -316,7 +406,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 17,
@@ -335,7 +431,13 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   },
   {
     "id": 21,
@@ -354,6 +456,12 @@
     "billingCode": "",
     "price": "",
     "indication": "",
-    "reportPath": ""
+    "reportPath": "",
+    "usePurpose": "",
+    "usageArea": "",
+    "deviceGrade": "",
+    "benefitType": "",
+    "infoDate": "",
+    "useMethod": ""
   }
 ]
