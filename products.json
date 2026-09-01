@@ -18,10 +18,10 @@
     "indication": "만 18세 이상의 심장질환 조기 선별이 필요한 환자 및 고위험인자 보유 환자, 만성질환으로 인한 내원 환자 등",
     "reportPath": "",
     "usePurpose": "",
-    "usageArea": "",
-    "deviceGrade": "",
-    "benefitType": "",
-    "infoDate": "",
+    "usageArea": "외래 및 건강검진",
+    "deviceGrade": "2등급 의료기기",
+    "benefitType": "비급여",
+    "infoDate": "2026.09",
     "useMethod": ""
   },
   {
@@ -43,10 +43,10 @@
     "indication": "",
     "reportPath": "",
     "usePurpose": "",
-    "usageArea": "",
-    "deviceGrade": "",
-    "benefitType": "",
-    "infoDate": "",
+    "usageArea": "외래 및 건강검진",
+    "deviceGrade": "2등급 의료기기",
+    "benefitType": "급여",
+    "infoDate": "2026.09",
     "useMethod": ""
   },
   {
