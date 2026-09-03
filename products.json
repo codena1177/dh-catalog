@@ -22,7 +22,8 @@
     "deviceGrade": "2등급 의료기기",
     "benefitType": "비급여",
     "infoDate": "2026.09",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 2,
@@ -47,7 +48,8 @@
     "deviceGrade": "2등급 의료기기",
     "benefitType": "급여",
     "infoDate": "2026.09",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 3,
@@ -78,7 +80,10 @@
     "deviceGrade": "3등급 의료기기",
     "benefitType": "급여",
     "infoDate": "2026.09",
-    "useMethod": "대상자 안내 및 검사 접수 → [옵티나] 양안 안저 촬영 → [위스키] AI 분석 → 의료진 결과 확인 → 결과 상담 및 결과지 제공 → 유소견자 안과 진료·정밀검사 연계"
+    "useMethod": "대상자 안내 및 검사 접수 → [옵티나] 양안 안저 촬영 → [위스키] AI 분석 → 의료진 결과 확인 → 결과 상담 및 결과지 제공 → 유소견자 안과 진료·정밀검사 연계",
+    "summary": "",
+    "brochurePath": "assets/reports/brochure-3-옵티나&위스키(optina&wisky)-[옵티나&위스키]brochure(2026-ver.)_hcp용-1788415748255.pdf",
+    "brochureLabel": "[옵티나&위스키]Brochure(2026 ver.)_HCP용.pdf"
   },
   {
     "id": 22,
@@ -105,7 +110,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 5,
@@ -130,7 +136,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 6,
@@ -160,7 +167,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 7,
@@ -185,7 +193,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 8,
@@ -212,7 +221,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 9,
@@ -237,7 +247,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 10,
@@ -262,7 +273,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 11,
@@ -287,7 +299,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 12,
@@ -312,7 +325,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 13,
@@ -337,7 +351,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 14,
@@ -362,7 +377,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 15,
@@ -387,7 +403,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 16,
@@ -412,7 +429,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 17,
@@ -437,7 +455,8 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   },
   {
     "id": 21,
@@ -462,6 +481,7 @@
     "deviceGrade": "",
     "benefitType": "",
     "infoDate": "",
-    "useMethod": ""
+    "useMethod": "",
+    "summary": ""
   }
 ]
