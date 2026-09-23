@@ -139,7 +139,7 @@
     "diseaseSystem": "호흡기계",
     "funcType": "진단",
     "targetDisease": "호흡기 질환",
-    "billingCode": "59,340원 / F6002 + E7123 ※동시 청구 가능",
+    "billingCode": "[의원] 27,030원 / F6002(호흡기능검사-기류용적폐곡선)",
     "price": "[기기 표준가] 550만원 + [소프트웨어] 2,300원(건) ※판독 1회+필터 1개 포함",
     "indication": "천식 및 COPD 환자 및 의심환자, 검진 수검자",
     "reportPath": "assets/reports/report-5-더-스피로킷(the-spirokit)-[더스피로킷]결과지-sample-1786522644069.pdf",
