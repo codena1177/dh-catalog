@@ -148,7 +148,7 @@
     "deviceGrade": "2등급",
     "benefitType": "급여",
     "infoDate": "2026.09",
-    "useMethod": "",
+    "useMethod": "처방 → 기기 보정 → 검사 → 의료진 결과 확인 → 결과 상담 및 결과지 제공 → 유소견자 호흡기내과 진료·정밀검사 연계",
     "summary": "",
     "hospitalRevenue": "월 100건 검사 시, 약 590만원 ※의원 급여수가(F6002+E7123) 기준",
     "competitors": "바이오넷 社 cadio 7 / 중외 社 HI-801",
